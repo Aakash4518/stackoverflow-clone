@@ -1,0 +1,55 @@
+import { Permission } from "node-appwrite";
+import { questionAttachmentBucket } from "../name";
+import { storage } from "./config";
+
+export default async function getOrCreateStorage() {
+    try {
+        await storage.getBucket(questionAttachmentBucket);
+        console.log("Storage Connected");
+
+        // Update bucket permissions to ensure public read access
+        try {
+            await storage.updateBucket(
+                questionAttachmentBucket,
+                questionAttachmentBucket,
+                [
+                    Permission.create("users"),
+                    Permission.read("any"), // Public read access
+                    Permission.read("users"),
+                    Permission.update("users"),
+                    Permission.delete("users"),
+                ],
+                false,
+                undefined,
+                undefined,
+                ["jpg", "png", "gif", "jpeg", "webp", "heic"]
+            );
+            console.log("Storage permissions updated");
+        } catch (error) {
+            console.log("Storage permissions already set or error updating:", error);
+        }
+    } catch (error) {
+        try {
+            await storage.createBucket(
+                questionAttachmentBucket,
+                questionAttachmentBucket,
+                [
+                    Permission.create("users"),
+                    Permission.read("any"),
+                    Permission.read("users"),
+                    Permission.update("users"),
+                    Permission.delete("users"),
+                ],
+                false,
+                undefined,
+                undefined,
+                ["jpg", "png", "gif", "jpeg", "webp", "heic"]
+            );
+
+            console.log("Storage Created");
+            console.log("Storage Connected");
+        } catch (error) {
+            console.error("Error creating storage:", error);
+        }
+    }
+}
