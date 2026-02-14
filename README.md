@@ -2,6 +2,8 @@
 
 > A full-stack Q&A platform built with Next.js 14 and Appwrite, inspired by Stack Overflow. Created as part of learning from Udemy course by **Hitesh Chaudhary Sir**.
 
+Live Demo : https://stackoverflow-clone-murex.vercel.app/
+
 [![Next.js](https://img.shields.io/badge/Next.js-14.2.4-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Appwrite](https://img.shields.io/badge/Appwrite-15.0-f02e65?style=flat&logo=appwrite)](https://appwrite.io/)
